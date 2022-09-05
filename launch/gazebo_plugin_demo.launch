@@ -1,8 +1,5 @@
 <launch>
   <param name="/voxblox_ground_truth/voxel_size" value="0.2"/>
-  <!-- Save the ground truth voxblox map with:
-       rosservice call /gazebo/save_voxblox_ground_truth_to_file "file_path: '/home/you/ground_truth_map_name.tsdf'"-->
-
   <arg name="show_gazebo" default="true"/>
 
   <!-- Launch Gazebo world -->

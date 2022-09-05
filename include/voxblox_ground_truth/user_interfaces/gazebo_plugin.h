@@ -20,14 +20,17 @@ class VoxbloxGroundTruthPlugin : public WorldPlugin {
 
   void Load(physics::WorldPtr world, sdf::ElementPtr _sdf) override;
 
-  bool serviceCallback(voxblox_msgs::FilePath::Request& request,     // NOLINT
+  bool serviceCallbackTSDF(voxblox_msgs::FilePath::Request& request,     // NOLINT
+                       voxblox_msgs::FilePath::Response& response);  // NOLINT
+  bool serviceCallbackPCD(voxblox_msgs::FilePath::Request& request,     // NOLINT
                        voxblox_msgs::FilePath::Response& response);  // NOLINT
 
  private:
   physics::WorldPtr world_;
   ros::NodeHandle nh_private_;
   voxblox::FloatingPoint voxel_size_;
-  ros::ServiceServer srv_;
+  ros::ServiceServer srv_tsdf;
+  ros::ServiceServer srv_pcd;
 
   const std::vector<std::string> mesh_type_names_ = {
       "POINTS", "LINES", "LINESTRIPS", "TRIANGLES", "TRIFANS", "TRISTRIPS"};

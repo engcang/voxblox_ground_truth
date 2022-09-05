@@ -2,9 +2,13 @@
 <package format="2">
   <name>voxblox_ground_truth</name>
   <version>1.0.0</version>
-  <description>The voxblox_ground_truth package</description>
+  <description>
+    The voxblox_ground_truth package
+    Edited by Mason
+  </description>
 
   <maintainer email="victorr@ethz.ch">Victor Reijgwart</maintainer>
+  <maintainer email="eungchang_mason@kaist.ac.kr">Eungchang Mason Lee</maintainer>
 
   <author>Victor Reijgwart</author>
 
