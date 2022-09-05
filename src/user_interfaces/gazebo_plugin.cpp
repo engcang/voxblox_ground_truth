@@ -528,10 +528,16 @@ bool VoxbloxGroundTruthPlugin::serviceCallbackPCD(
   // Save the TSDF to a file
   LOG(INFO) << "Saving PCD to file: " << request.file_path;
 
-  pcl::PointCloud<pcl::PointXYZRGB> pointcloud;
+  pcl::PointCloud<pcl::PointXYZRGB> pointcloud_rgb;
+  pcl::PointCloud<pcl::PointXYZ> pointcloud_out;
   const float surface_distance_thresh = sdf_creator.getTsdfMap().getTsdfLayer().voxel_size() * 0.75;
-  createSurfacePointcloudFromTsdfLayer(sdf_creator.getTsdfMap().getTsdfLayer(), surface_distance_thresh, &pointcloud);
-  pcl::io::savePCDFileASCII<pcl::PointXYZRGB> (request.file_path, pointcloud);
+  createSurfacePointcloudFromTsdfLayer(sdf_creator.getTsdfMap().getTsdfLayer(), surface_distance_thresh, &pointcloud_rgb);
+
+  for (int i = 0; i < pointcloud_rgb.points.size(); ++i)
+  {
+    pointcloud_out.push_back(pcl::PointXYZ(pointcloud_rgb.points[i].x, pointcloud_rgb.points[i].y, pointcloud_rgb.points[i].z));
+  }
+  pcl::io::savePCDFileASCII<pcl::PointXYZ> (request.file_path, pointcloud_out);
 
   return true;
 }
