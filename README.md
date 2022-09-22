@@ -1,5 +1,5 @@
 # Voxblox Ground Truth
-+ Create ground truth voxblox `.tsdf` or `.pcd` maps from `Gazebo` worlds
++ Create ground truth voxblox `.tsdf` or `.pcd` or `.ply`(not mesh, pointcloud) maps from `Gazebo` worlds
 
 ## Install
 + Make sure that [Voxblox](https://github.com/ethz-asl/voxblox#table-of-contents) and [Gazebo](http://gazebosim.org/tutorials?tut=ros_installing) are installed, then run
@@ -32,9 +32,13 @@ rosparam set /voxblox_ground_truth/voxel_size 0.05
 
 Then wait for Gazebo and Rviz finish loading. Once they're ready, call
 ```bash
-rosservice call /gazebo/save_voxblox_ground_truth_to_tsdf "file_path: '$HOME/voxblox_ground_truth_demo.tsdf'"
+rosservice call /gazebo/save_voxblox_ground_truth_to_tsdf "file_path: '$HOME/filename.tsdf'"
 
 or
 
-rosservice call /gazebo/save_voxblox_ground_truth_to_pcd "file_path: '$HOME/voxblox_ground_truth_demo.pcd'"
+rosservice call /gazebo/save_voxblox_ground_truth_to_pcd "file_path: '$HOME/filename.pcd'"
+
+or
+
+rosservice call /gazebo/save_voxblox_ground_truth_to_ply "file_path: '$HOME/filename.ply'"
 ```

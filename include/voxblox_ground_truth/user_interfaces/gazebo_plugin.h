@@ -24,6 +24,8 @@ class VoxbloxGroundTruthPlugin : public WorldPlugin {
                        voxblox_msgs::FilePath::Response& response);  // NOLINT
   bool serviceCallbackPCD(voxblox_msgs::FilePath::Request& request,     // NOLINT
                        voxblox_msgs::FilePath::Response& response);  // NOLINT
+  bool serviceCallbackPLY(voxblox_msgs::FilePath::Request& request,     // NOLINT
+                       voxblox_msgs::FilePath::Response& response);  // NOLINT
 
  private:
   physics::WorldPtr world_;
@@ -31,6 +33,7 @@ class VoxbloxGroundTruthPlugin : public WorldPlugin {
   voxblox::FloatingPoint voxel_size_;
   ros::ServiceServer srv_tsdf;
   ros::ServiceServer srv_pcd;
+  ros::ServiceServer srv_ply;
 
   const std::vector<std::string> mesh_type_names_ = {
       "POINTS", "LINES", "LINESTRIPS", "TRIANGLES", "TRIFANS", "TRISTRIPS"};
