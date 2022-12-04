@@ -1,5 +1,6 @@
 # Voxblox Ground Truth
-+ Create ground truth voxblox `.tsdf` or `.pcd` or `.ply`(not mesh, pointcloud) maps from `Gazebo` worlds
++ `gt_gen_plugin`: Create ground truth voxblox `.tsdf` or `.pcd` or `.ply`(not mesh, pointcloud) maps from `Gazebo` worlds
++ `tsdf_to_pcdnormal`: Generate `pcl::PointCloud<pcl::PointNormal>` from `.tsdf`
 
 ## Install
 + Make sure that [Voxblox](https://github.com/ethz-asl/voxblox#table-of-contents) and [Gazebo](http://gazebosim.org/tutorials?tut=ros_installing) are installed, then run
@@ -41,4 +42,12 @@ rosservice call /gazebo/save_voxblox_ground_truth_to_pcd "file_path: '$HOME/file
 or
 
 rosservice call /gazebo/save_voxblox_ground_truth_to_ply "file_path: '$HOME/filename.ply'"
+```
+
+## `.tsdf` to `pcl::PointCloud<pcl::PointNormal>`
+
+```bash
+rosparam set /voxblox_ground_truth/voxel_size 0.05 (should be same with generatead size)
+rosrun tsdf_to_pcdnormal tsdf_to_pcdnormal_node
+rostopic pub /load_map std_msgs/String "data: '$HOME/filename.tsdf'"
 ```
